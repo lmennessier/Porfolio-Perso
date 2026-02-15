@@ -18,7 +18,7 @@ const getTechIcon = (techName) => {
   );
 };
 const PROJECTS = [
-  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "Framer Motion"], github: "github.com/lmennessier/mon-portfolio", live: "#" },
+  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "JavaScript"], github: "github.com/lmennessier/mon-portfolio", live: "#" },
   { title: "Automate", description: "Projet Universitaire sur des Automates", tech: ["Python","Jupyter"], github: "#", live: "#" },
   { title: "Ecosys-Simu", description: "Simulation d'un écosysteme", tech: ["C"], github: "#", live: "#" }
 ];

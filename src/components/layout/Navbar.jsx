@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AiOutlineHome, AiOutlineFundProjectionScreen, AiOutlineUser, AiFillGithub, AiOutlineContacts } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUser, AiFillGithub, AiOutlineContacts, AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { CgFileDocument } from 'react-icons/cg';
 
 export default function Navbar() {
   const [navColour, setNavColour] = useState(false);
+  // 1. AJOUT DE L'ÉTAT POUR LE MENU MOBILE
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation(); 
 
   useEffect(() => {
@@ -19,16 +21,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
 
+  // Fonction pour fermer le menu quand on clique sur un lien mobile
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <nav 
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        navColour ? "backdrop-blur-md bg-bg/80 shadow-[0_0_20px_rgba(0,0,0,0.5)] border-b border-white/5" : "bg-transparent py-4"
+        navColour ? "backdrop-blur-md bg-bg/90 shadow-[0_0_20px_rgba(0,0,0,0.5)] border-b border-white/5" : "bg-transparent py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center relative">
         
-        {/* Remplacement du texte par l'image */}
-        <Link to="/" className="hover:opacity-80 transition-opacity">
+        <Link to="/" className="hover:opacity-80 transition-opacity" onClick={closeMobileMenu}>
           <img 
             src="/images/cute-batman.png" 
             alt="Logo" 
@@ -36,35 +40,51 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Menu Desktop */}
+        {/* --- MENU DESKTOP --- */}
         <ul className="hidden md:flex gap-8 text-lg font-medium">
           <NavItem to="/" icon={<AiOutlineHome />} text="Home" currentPath={location.pathname} />
           <NavItem to="/about" icon={<AiOutlineUser />} text="About" currentPath={location.pathname} />
           <NavItem to="/resume" icon={<CgFileDocument />} text="Resume" currentPath={location.pathname} />
           <NavItem to="/contact" icon={<AiOutlineContacts />} text="Contact" currentPath={location.pathname} />
-          
-          <NavItem 
-            to="https://github.com/ton-github" 
-            icon={<AiFillGithub />} 
-            text="GitHub" 
-            isExternal 
-          />
+          <NavItem to="https://github.com/lmennessier" icon={<AiFillGithub />} text="GitHub" isExternal />
         </ul>
 
-        {/* Menu Mobile */}
-        <div className="md:hidden text-accent text-2xl cursor-pointer">
-          ☰
+        {/* --- BOUTON TOGGLE MOBILE --- */}
+        {/* 2. AJOUT DU ONCLICK ET DE L'ICÔNE DYNAMIQUE */}
+        <div 
+          className="md:hidden text-accent text-2xl cursor-pointer"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
         </div>
+      </div>
+
+      {/* --- MENU MOBILE DÉROULANT --- */}
+      {/* 3. STRUCTURE HTML POUR LE MOBILE */}
+      <div 
+        className={`md:hidden absolute top-full left-0 w-full bg-bg border-b border-border transition-all duration-300 overflow-hidden ${
+          isMobileMenuOpen ? "max-h-96 opacity-100 py-4" : "max-h-0 opacity-0 py-0"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-6 text-lg font-medium">
+          {/* On passe closeMobileMenu via la prop onClick */}
+          <NavItem to="/" icon={<AiOutlineHome />} text="Home" currentPath={location.pathname} onClick={closeMobileMenu} />
+          <NavItem to="/about" icon={<AiOutlineUser />} text="About" currentPath={location.pathname} onClick={closeMobileMenu} />
+          <NavItem to="/resume" icon={<CgFileDocument />} text="Resume" currentPath={location.pathname} onClick={closeMobileMenu} />
+          <NavItem to="/contact" icon={<AiOutlineContacts />} text="Contact" currentPath={location.pathname} onClick={closeMobileMenu} />
+          <NavItem to="https://github.com/lmennessier" icon={<AiFillGithub />} text="GitHub" isExternal onClick={closeMobileMenu} />
+        </ul>
       </div>
     </nav>
   );
 }
 
-function NavItem({ to, icon, text, isExternal, currentPath }) {
+// 4. MISE À JOUR DU COMPOSANT NAVITEM POUR GÉRER LE CLIC
+function NavItem({ to, icon, text, isExternal, currentPath, onClick }) {
   const isActive = currentPath === to;
 
   return (
-    <li>
+    <li onClick={onClick}>
       {isExternal ? (
         <a 
           href={to} 

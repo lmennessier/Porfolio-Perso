@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
+import { AiFillGithub } from 'react-icons/ai';
 
 export default function Hero() {
   return (
@@ -25,8 +26,7 @@ export default function Hero() {
               strings: [
                 "Développeur Web Full-Stack",
                 "Architecte React",
-                "Créateur d'interfaces",
-                "Futur Project Manager"
+                "Recherche Alternance Master"
               ],
               autoStart: true,
               loop: true,
@@ -43,6 +43,52 @@ export default function Hero() {
         >
           Je construis des expériences web rapides, accessibles et visuellement minimalistes.
         </motion.p>
+
+        {/* --- NOUVEAU : Bloc Icônes Sociaux --- */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }} 
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex gap-6 items-center pt-4"
+        >
+          <a 
+            href="https://github.com/lmennessier" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="text-muted hover:text-white transition-colors"
+          >
+            <AiFillGithub size={30} />
+          </a>
+          
+          <a 
+            href="https://www.linkedin.com/in/loic-mennessier" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
+          >
+            {/* On réutilise ton SVG comme dans le Footer */}
+            <img 
+              src="/TechIcons/linkedin.svg" 
+              alt="LinkedIn" 
+              className="w-[26px] h-[26px] object-contain"
+              onError={(e) => e.target.style.display = 'none'}
+            />
+          </a>
+          <a 
+            href="" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
+          >
+            {/* On réutilise ton SVG comme dans le Footer */}
+            <img 
+              src="/TechIcons/instagram.svg" 
+              alt="Instagram" 
+              className="w-[26px] h-[26px] object-contain"
+              onError={(e) => e.target.style.display = 'none'}
+            />
+          </a>
+        </motion.div>
         
       </div>
     </section>
