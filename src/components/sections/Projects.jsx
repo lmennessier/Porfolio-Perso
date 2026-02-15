@@ -4,24 +4,23 @@ import { BiLinkExternal } from 'react-icons/bi';
 import { DiReact, DiNodejs, DiMongodb } from 'react-icons/di';
 import { SiNextdotjs, SiTailwindcss, SiFramer, SiStripe } from 'react-icons/si'; // Correction ici
 
+
 const getTechIcon = (techName) => {
-  const iconSize = 16;
-  
-  switch (techName.toLowerCase().trim()) {
-    case "react": return <DiReact size={iconSize} color="#61DAFB" />;
-    case "tailwind": return <SiTailwindcss size={iconSize} color="#06B6D4" />;
-    case "framer motion": return <SiFramer size={iconSize} color="#ffffff" />; // Correction ici
-    case "next.js": return <SiNextdotjs size={iconSize} color="#ffffff" />;
-    case "stripe": return <SiStripe size={iconSize} color="#635BFF" />;
-    case "node.js": return <DiNodejs size={iconSize} color="#339933" />;
-    case "mongodb": return <DiMongodb size={iconSize} color="#47A248" />;
-    default: return null;
-  }
+  return (
+    <img 
+      src={`/TechIcons/${encodeURIComponent(techName)}.svg`} 
+      alt={techName} 
+      className="w-4 h-4 object-contain"
+      onError={(e) => {
+        e.target.style.display = 'none';
+      }}
+    />
+  );
 };
 const PROJECTS = [
-  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "Framer Motion"], github: "#", live: "#" },
-  { title: "E-Commerce", description: "Plateforme complète.", tech: ["Next.js", "Stripe", "Tailwind"], github: "#", live: "#" },
-  { title: "Dashboard", description: "Outil de gestion de données.", tech: ["React", "Node.js", "MongoDB"], github: "#", live: "#" }
+  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "Framer Motion"], github: "github.com/lmennessier/mon-portfolio", live: "#" },
+  { title: "Automate", description: "Projet Universitaire sur des Automates", tech: ["Python","Jupyter"], github: "#", live: "#" },
+  { title: "Ecosys-Simu", description: "Simulation d'un écosysteme", tech: ["C"], github: "#", live: "#" }
 ];
 
 export default function Projects() {
