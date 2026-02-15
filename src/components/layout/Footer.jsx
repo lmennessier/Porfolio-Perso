@@ -16,7 +16,7 @@ export default function Footer() {
             </a>
           </li>
           <li>
-            <a href="TON_LIEN_INSTA" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity flex items-center justify-center">
+            <a href="https://www.instagram.com/loic.menn/" target="_blank" rel="noreferrer" className="hover:opacity-80 transition-opacity flex items-center justify-center">
               <img 
                 src="/TechIcons/instagram.svg" 
                 alt="Instagram" 

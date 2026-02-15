@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
-import { DiReact, DiNodejs, DiMongodb } from 'react-icons/di';
-import { SiNextdotjs, SiTailwindcss, SiFramer, SiStripe } from 'react-icons/si'; // Correction ici
-
 
 const getTechIcon = (techName) => {
   return (
@@ -17,10 +14,11 @@ const getTechIcon = (techName) => {
     />
   );
 };
+
 const PROJECTS = [
-  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "JavaScript"], github: "github.com/lmennessier/mon-portfolio", live: "#" },
-  { title: "Automate", description: "Projet Universitaire sur des Automates", tech: ["Python","Jupyter"], github: "#", live: "#" },
-  { title: "Ecosys-Simu", description: "Simulation d'un écosysteme", tech: ["C"], github: "#", live: "#" }
+  { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "JavaScript"], github: "https://github.com/lmennessier/mon-portfolio", live: "#" },
+  { title: "Automate", description: "Projet Universitaire sur des Automates", tech: ["Python","Jupyter"], github: "https://github.com/lmennessier/Automate" },
+  { title: "Ecosys-Simu", description: "Simulation d'un écosystème", tech: ["C"], github: "https://github.com/lmennessier/Ecocsys-Project"}
 ];
 
 export default function Projects() {
@@ -41,7 +39,6 @@ export default function Projects() {
               <h3 className="text-xl font-bold mb-3 text-text">{project.title}</h3>
               <p className="text-muted mb-6 flex-grow">{project.description}</p>
               
-              {/* Badges avec icônes colorées */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tech.map((tech, i) => (
                   <span key={i} className="text-xs border border-border px-2 py-1 rounded text-muted flex items-center gap-1.5">
@@ -52,8 +49,17 @@ export default function Projects() {
               </div>
               
               <div className="flex gap-4">
-                <a href="#" className="text-muted hover:text-white transition-colors"><AiOutlineGithub size={24} /></a>
-                <a href="#" className="text-muted hover:text-white transition-colors"><BiLinkExternal size={24} /></a>
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-white transition-colors">
+                    <AiOutlineGithub size={24} />
+                  </a>
+                )}
+                
+                {project.live && (
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-white transition-colors">
+                    <BiLinkExternal size={24} />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

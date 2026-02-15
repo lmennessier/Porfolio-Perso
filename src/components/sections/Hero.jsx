@@ -66,7 +66,6 @@ export default function Hero() {
             rel="noreferrer" 
             className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
           >
-            {/* On réutilise ton SVG comme dans le Footer */}
             <img 
               src="/TechIcons/linkedin.svg" 
               alt="LinkedIn" 
@@ -75,12 +74,11 @@ export default function Hero() {
             />
           </a>
           <a 
-            href="" 
+            href="https://www.instagram.com/loic.menn/" 
             target="_blank" 
             rel="noreferrer" 
             className="opacity-70 hover:opacity-100 transition-opacity flex items-center justify-center"
           >
-            {/* On réutilise ton SVG comme dans le Footer */}
             <img 
               src="/TechIcons/instagram.svg" 
               alt="Instagram" 
