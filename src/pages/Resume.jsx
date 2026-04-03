@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { AiOutlineDownload } from 'react-icons/ai';
 
-const pdfLink = "/resume/cv.pdf"; 
+const pdfLink1 = "/resume/CV_ALTERNACE_MIAGE.pdf"; 
+const pdfLink2 = "/resume/CV_ALTERNACE_GL.pdf"; 
 
 export default function Resume() {
   return (
@@ -15,13 +16,23 @@ export default function Resume() {
         <h1 className="text-4xl font-bold text-text mb-8">Curriculum Vitae</h1>
 
         <a 
-          href={pdfLink}
+          href={pdfLink1}
           target="_blank"
           rel="noreferrer"
           className="bg-text text-bg font-medium py-3 px-8 rounded flex items-center gap-3 mb-12 hover:opacity-90 transition-opacity"
         >
           <AiOutlineDownload size={24} />
-          Télécharger le CV (PDF)
+          Télécharger le CV MIAGE(PDF)
+        </a>
+
+        <a 
+          href={pdfLink2}
+          target="_blank"
+          rel="noreferrer"
+          className="bg-text text-bg font-medium py-3 px-8 rounded flex items-center gap-3 mb-12 hover:opacity-90 transition-opacity"
+        >
+          <AiOutlineDownload size={24} />
+          Télécharger le CV GL(PDF)
         </a>
 
         {/* Aperçu HTML du CV */}
@@ -30,7 +41,7 @@ export default function Resume() {
           {/* En-tête CV */}
           <div className="border-b border-border pb-6 mb-8">
             <h2 className="text-3xl font-bold text-text tracking-tight">Loïc Mennessier</h2>
-            <p className="text-lg text-muted mt-2 font-medium">Développeur d'Applications / Recherche d'Alternance Master</p>
+            <p className="text-lg text-muted mt-2 font-medium">Développeur d'Applications/ Gestion de Projet IT / Recherche d'Alternance Master</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12">
