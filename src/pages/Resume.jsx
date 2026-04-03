@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { AiOutlineDownload } from 'react-icons/ai';
 
 const pdfLink1 = "/resume/CV_ALTERNACE_MIAGE.pdf"; 
-const pdfLink2 = "/resume/CV_ALTERNACE_GL.pdf"; 
+const pdfLink2 = "/resume/CV_ALTERNANCE_GL.pdf"; 
 
 export default function Resume() {
   return (
