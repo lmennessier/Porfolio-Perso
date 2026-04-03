@@ -27,6 +27,7 @@ export default function About() {
               <li>Développement Web (React, Node.JS, Blazor)</li>
               <li>Développement Logiciel (C#, Java)</li>
               <li>Bases de données & Déploiement (SQL, Azure)</li>
+              <li>Modélisation UML</li>
             </ul>
 
             <p>
