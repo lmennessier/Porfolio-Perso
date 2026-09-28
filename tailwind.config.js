@@ -7,15 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "var(--bg-primary)",
-        card: "var(--bg-card)",
-        text: "var(--text-primary)",
-        muted: "var(--text-secondary)",
-        accent: "var(--accent-color)",
-        border: "var(--border-color)",
+        ground: "var(--ground)",
+        station: "var(--station)",
+        ink: "var(--ink)",
+        muted: "var(--ink-2)",
+        rule: "var(--rule)",
+        line: "var(--line)",
+        "line-deep": "var(--line-deep)",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['"Overpass Variable"', 'system-ui', 'sans-serif'],
       },
     },
   },

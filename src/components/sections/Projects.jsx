@@ -1,19 +1,6 @@
-import { motion } from 'framer-motion';
-import { AiOutlineGithub } from 'react-icons/ai';
+import { AiFillGithub } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
-
-const getTechIcon = (techName) => {
-  return (
-    <img 
-      src={`/TechIcons/${encodeURIComponent(techName)}.svg`} 
-      alt={techName} 
-      className="w-4 h-4 object-contain"
-      onError={(e) => {
-        e.target.style.display = 'none';
-      }}
-    />
-  );
-};
+import TechBadge from '../line/TechBadge';
 
 const PROJECTS = [
   { title: "Portfolio V1", description: "Architecture React propre et minimaliste.", tech: ["React", "Tailwind", "JavaScript"], github: "https://github.com/lmennessier/mon-portfolio", live: "#" },
@@ -21,49 +8,59 @@ const PROJECTS = [
   { title: "Ecosys-Simu", description: "Simulation d'un écosystème", tech: ["C"], github: "https://github.com/lmennessier/Ecocsys-Project"}
 ];
 
+// Un lien "#" ne mène nulle part : on ne l'affiche pas
+const hasLink = (url) => Boolean(url) && url !== '#';
+
 export default function Projects() {
   return (
-    <section className="py-24 px-6" id="projects">
+    <section className="pt-16 md:pt-12 pb-16 md:pb-24 px-6" id="projects">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12">Projets Sélectionnés</h2>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-card border border-border p-6 rounded hover:border-neutral-500 transition-colors flex flex-col h-full"
-            >
-              <h3 className="text-xl font-bold mb-3 text-text">{project.title}</h3>
-              <p className="text-muted mb-6 flex-grow">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((tech, i) => (
-                  <span key={i} className="text-xs border border-border px-2 py-1 rounded text-muted flex items-center gap-1.5">
-                    {getTechIcon(tech)}
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              
-              <div className="flex gap-4">
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-white transition-colors">
-                    <AiOutlineGithub size={24} />
-                  </a>
-                )}
-                
-                {project.live && (
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-muted hover:text-white transition-colors">
-                    <BiLinkExternal size={24} />
-                  </a>
-                )}
-              </div>
-            </motion.div>
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-[-0.03em]">Projets sélectionnés</h2>
+
+        <ol className="line-list mt-10 md:mt-8">
+          {PROJECTS.map((project) => (
+            <li key={project.title} className="station station--interactive pb-12 md:pb-14">
+              {/* Anatomie fixe : nom, description, stack, lien */}
+              <article>
+                <h3 className="text-2xl md:text-[1.75rem] font-extrabold leading-8 tracking-tight">{project.title}</h3>
+                <p className="mt-2 text-lg text-muted max-w-prose">{project.description}</p>
+
+                <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <ul className="flex flex-wrap gap-2" aria-label="Technologies">
+                    {project.tech.map((tech) => (
+                      <li key={tech}><TechBadge name={tech} /></li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    {hasLink(project.github) && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-bold text-line hover:text-line-deep underline decoration-2 decoration-transparent hover:decoration-current transition-colors"
+                      >
+                        <AiFillGithub size={20} aria-hidden="true" />
+                        Code source
+                        <span className="sr-only"> de {project.title}</span>
+                      </a>
+                    )}
+                    {hasLink(project.live) && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-bold text-line hover:text-line-deep underline decoration-2 decoration-transparent hover:decoration-current transition-colors"
+                      >
+                        <BiLinkExternal size={20} aria-hidden="true" />
+                        Voir en ligne
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

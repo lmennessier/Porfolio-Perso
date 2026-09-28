@@ -1,124 +1,120 @@
-import { motion } from 'framer-motion';
 import { AiOutlineDownload } from 'react-icons/ai';
 
-const pdfLink1 = "/resume/CV_ALTERNACE_MIAGE.pdf"; 
-const pdfLink2 = "/resume/CV_ALTERNANCE_GL.pdf"; 
+const pdfLink1 = "/resume/CV_ALTERNACE_MIAGE.pdf";
+const pdfLink2 = "/resume/CV_ALTERNANCE_GL.pdf";
+
+const STACK = ['C#', 'Java', 'React', 'Node.js', 'JavaScript', 'Blazor', 'SQL', 'Git', 'Azure', 'Claude Code'];
 
 export default function Resume() {
   return (
-    <div className="min-h-screen pt-32 px-6 flex flex-col items-center">
-      
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="w-full max-w-4xl flex flex-col items-center pb-20"
-      >
-        <h1 className="text-4xl font-bold text-text mb-8">Curriculum Vitae</h1>
+    <section className="pt-36 md:pt-44 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold tracking-[-0.035em] leading-[0.95]">
+            Curriculum Vitae
+          </h1>
 
-        <a 
-          href={pdfLink1}
-          target="_blank"
-          rel="noreferrer"
-          className="bg-text text-bg font-medium py-3 px-8 rounded flex items-center gap-3 mb-12 hover:opacity-90 transition-opacity"
-        >
-          <AiOutlineDownload size={24} />
-          Télécharger le CV MIAGE(PDF)
-        </a>
-
-        <a 
-          href={pdfLink2}
-          target="_blank"
-          rel="noreferrer"
-          className="bg-text text-bg font-medium py-3 px-8 rounded flex items-center gap-3 mb-12 hover:opacity-90 transition-opacity"
-        >
-          <AiOutlineDownload size={24} />
-          Télécharger le CV GL(PDF)
-        </a>
+          <div className="flex flex-wrap gap-3">
+            <a href={pdfLink1} target="_blank" rel="noreferrer" className="btn btn-line">
+              <AiOutlineDownload size={20} aria-hidden="true" />
+              Télécharger le CV MIAGE (PDF)
+            </a>
+            <a href={pdfLink2} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              <AiOutlineDownload size={20} aria-hidden="true" />
+              Télécharger le CV GL (PDF)
+            </a>
+          </div>
+        </div>
 
         {/* Aperçu HTML du CV */}
-        <div className="w-full border border-border bg-card rounded-lg p-8 md:p-12 text-left shadow-lg">
-          
-          {/* En-tête CV */}
-          <div className="border-b border-border pb-6 mb-8">
-            <h2 className="text-3xl font-bold text-text tracking-tight">Loïc Mennessier</h2>
-            <p className="text-lg text-muted mt-2 font-medium">Développeur d'Applications/ Gestion de Projet IT / Recherche d'Alternance Master</p>
-          </div>
+        <article className="mt-14 bg-station border border-rule rounded-lg p-8 md:p-12">
+          <header className="border-b border-rule pb-8 mb-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.03em]">Loïc Mennessier</h2>
+            <p className="text-lg text-muted mt-2 font-medium">Développeur Full Stack / Gestion de Projet IT / Master MIAGE en alternance</p>
+          </header>
 
           <div className="grid md:grid-cols-3 gap-12">
-            
-            {/* Colonne Gauche (Expérience & Formation) */}
-            <div className="md:col-span-2 space-y-10">
-              
+            <div className="md:col-span-2 space-y-12">
               <section>
-                <h3 className="text-sm font-bold text-text mb-6 uppercase tracking-widest border-l-2 border-text pl-3">Expérience</h3>
-                
-                <div className="space-y-8">
-                  <div>
-                    <div className="flex justify-between items-baseline mb-1">
-                      <h4 className="text-lg font-bold text-text">Développeur Web & .NET (Stage)</h4>
-                      <span className="text-sm text-muted">2025</span>
-                    </div>
-                    <p className="text-muted text-sm mb-3">AFNOR Groupe</p>
-                    <ul className="list-disc list-inside text-muted text-sm space-y-2 leading-relaxed">
-                      <li>Migration d'un backoffice MVC C# vers la technologie Microsoft Blazor.</li>
-                      <li>Optimisation du temps de chargement du site web.</li>
-                      <li>Conception de l'interface utilisateur en Blazor.</li>
-                    </ul>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-extrabold tracking-tight mb-5">Expérience</h3>
+                <CvEntry
+                  title="Développeur Full Stack (Alternance)"
+                  when="Depuis 2026"
+                  where="OCAPIAT - Paris"
+                />
+                <CvEntry
+                  title="Développeur Web & .NET (Stage)"
+                  when="2025"
+                  where="AFNOR Groupe"
+                  items={[
+                    "Migration d'un backoffice MVC C# vers la technologie Microsoft Blazor.",
+                    "Optimisation du temps de chargement du site web.",
+                    "Conception de l'interface utilisateur en Blazor.",
+                  ]}
+                />
               </section>
 
               <section>
-                <h3 className="text-sm font-bold text-text mb-6 uppercase tracking-widest border-l-2 border-text pl-3">Formation</h3>
-                
-                <div>
-                  <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="text-lg font-bold text-text">Licence en Informatique</h4>
-                    <span className="text-sm text-muted">2023 - 2026</span>
-                  </div>
-                  <p className="text-muted text-sm mb-2">Sorbonne Université - Paris</p>
-                  <ul className="list-disc list-inside text-muted text-sm space-y-1">
-                    <li>Programmation orientée objet</li>
-                    <li>Développement Web</li>
-                    <li>Génie Logiciel</li>
-                    <li>Intelligence Artificielle et Jeux</li>
-                  </ul>
-                </div>
+                <h3 className="text-2xl font-extrabold tracking-tight mb-5">Formation</h3>
+                <CvEntry
+                  title="Master MIAGE (Alternance)"
+                  when="Depuis 2026"
+                />
+                <CvEntry
+                  title="Licence en Informatique"
+                  when="2023 – 2026"
+                  where="Sorbonne Université - Paris"
+                  items={[
+                    'Programmation orientée objet',
+                    'Développement Web',
+                    'Génie Logiciel',
+                    'Intelligence Artificielle et Jeux',
+                  ]}
+                />
               </section>
-
             </div>
 
-            {/* Colonne Droite (Compétences & Infos) */}
-            <div className="space-y-10">
-              
+            <div className="space-y-12">
               <section>
-                <h3 className="text-sm font-bold text-text mb-6 uppercase tracking-widest border-l-2 border-text pl-3">Tech Stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">C#</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">Java</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">React</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">Node.js</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">JavaScript</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">Blazor</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">SQL</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">Git</span>
-                  <span className="text-xs border border-border px-2 py-1 rounded text-muted bg-bg">Azure</span>
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-sm font-bold text-text mb-6 uppercase tracking-widest border-l-2 border-text pl-3">Langues</h3>
-                <ul className="text-sm text-muted space-y-2">
-                  <li>Français (Maternel)</li>
-                  <li>Anglais (B2)</li>
+                <h3 className="text-2xl font-extrabold tracking-tight mb-5">Tech Stack</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {STACK.map((tech) => (
+                    <li key={tech} className="correspondence pl-3">{tech}</li>
+                  ))}
                 </ul>
               </section>
 
+              <section>
+                <h3 className="text-2xl font-extrabold tracking-tight mb-5">Langues</h3>
+                <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+                  <dt className="font-bold">Français</dt><dd className="text-muted">Maternel</dd>
+                  <dt className="font-bold">Anglais</dt><dd className="text-muted">B2</dd>
+                </dl>
+              </section>
             </div>
           </div>
+        </article>
+      </div>
+    </section>
+  );
+}
 
-        </div>
-      </motion.div>
+function CvEntry({ title, when, where, items = [] }) {
+  return (
+    <div className="[&+&]:mt-8">
+      <div className="flex flex-wrap justify-between items-baseline gap-x-4">
+        <h4 className="text-xl font-bold leading-8">{title}</h4>
+        <span className="text-sm font-semibold text-muted tabular-nums">{when}</span>
+      </div>
+      {where && <p className="text-muted font-medium">{where}</p>}
+      {items.length > 0 && <ul className="mt-4 space-y-2 text-muted leading-relaxed">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3">
+            <span aria-hidden="true" className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>}
     </div>
   );
 }

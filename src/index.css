@@ -1,33 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-card: #141414;
-  --text-primary: #ededed;
-  --text-secondary: #888888;
-  --accent-color: #ffffff;
-  --border-color: #262626;
+  --ground: #f4f4f1;
+  --station: #ffffff;
+  --ink: #161616;
+  --ink-2: #5c5c57;
+  --rule: #d6d6d0;
+  --rule-strong: #8a8a84; /* contour des champs : ≥ 3:1 sur blanc */
+  --line: #5b3fd9;
+  --line-deep: #4629b8;
 }
 
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--ground);
+    color: var(--ink);
+    font-family: 'Overpass Variable', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    caret-color: var(--line);
+  }
+
+  ::selection {
+    background: var(--line);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--ground); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 5px; border: 2px solid var(--ground); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-2); }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #555; }
+@layer components {
+  /* Ligne verticale : chaque <li class="station"> est un arrêt sur le tracé. */
+  .line-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    --station-y: 1rem;
+    --dot: 1.25rem;
+    --track: 6px;
+  }
 
-/* Ajustement SVG */
-svg {
-  display: inline-block;
-  vertical-align: middle;
+  .line-list--sm {
+    --station-y: 0.75rem;
+    --dot: 1rem;
+    --track: 4px;
+  }
+
+  .station {
+    position: relative;
+    padding-left: calc(var(--dot) + 1.5rem);
+    padding-bottom: 3rem;
+  }
+
+  .line-list--sm > .station {
+    padding-left: calc(var(--dot) + 1rem);
+    padding-bottom: 1.25rem;
+  }
+
+  .station:last-child {
+    padding-bottom: 0;
+  }
+
+  .station::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--dot) / 2 - var(--track) / 2);
+    width: var(--track);
+    top: 0;
+    bottom: 0;
+    background: var(--line);
+  }
+
+  .station:first-child::before { top: var(--station-y); }
+  .station:last-child::before { bottom: auto; height: var(--station-y); }
+  .station:only-child::before { display: none; }
+
+  .station::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(var(--station-y) - var(--dot) / 2);
+    width: var(--dot);
+    height: var(--dot);
+    box-sizing: border-box;
+    border-radius: 9999px;
+    background: var(--station);
+    border: calc(var(--track) * 0.67) solid var(--ink);
+    transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Le violet est réservé à ce qui se clique */
+  .station--interactive::after {
+    border-color: var(--line);
+  }
+
+  /* Station déjà desservie : la ligne est passée, elle est allumée */
+  .station--passed::after {
+    background: var(--line);
+    border-color: var(--line);
+  }
+
+  .station--terminus::after {
+    width: calc(var(--dot) + 0.25rem);
+    height: calc(var(--dot) + 0.25rem);
+    left: -0.125rem;
+    top: calc(var(--station-y) - var(--dot) / 2 - 0.125rem);
+    border-width: calc(var(--track) * 0.84);
+  }
+
+  .station--interactive:hover::after,
+  .station--interactive:focus-within::after {
+    background: var(--line);
+  }
+
+  /* Plaque de direction : fond encre, texte blanc. */
+  .sign {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 0.375rem;
+    padding: 0.625rem 1rem 0.5rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 9999px;
+    padding: 0.8125rem 1.5rem 0.6875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-line {
+    background: var(--line);
+    color: #fff;
+  }
+  .btn-line:hover { background: var(--line-deep); }
+
+  .btn-ghost {
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    padding: 0.6875rem 1.375rem 0.5625rem;
+  }
+  .btn-ghost:hover { background: var(--ink); color: #fff; }
+
+  /* Pastille de correspondance (techno). */
+  .correspondence {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--rule);
+    background: var(--station);
+    border-radius: 9999px;
+    padding: 0.3125rem 0.75rem 0.1875rem 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .correspondence img {
+    width: 1.125rem;
+    height: 1.125rem;
+    object-fit: contain;
+  }
+
+  .correspondence--lg {
+    gap: 0.625rem;
+    padding: 0.5rem 1.125rem 0.375rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .correspondence--lg img {
+    width: 1.625rem;
+    height: 1.625rem;
+  }
+
+  .field {
+    width: 100%;
+    background: var(--station);
+    border: 1px solid var(--rule-strong);
+    border-radius: 0.375rem;
+    padding: 0.875rem 1rem 0.75rem;
+    color: var(--ink);
+    transition: border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .field::placeholder { color: var(--ink-2); }
+  .field:hover { border-color: var(--ink-2); }
+  .field:focus { border-color: var(--line); outline: 2px solid var(--line); outline-offset: 0; }
 }
