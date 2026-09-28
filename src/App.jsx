@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -6,12 +7,21 @@ import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import Footer from './components/layout/Footer';
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
+
 function AppContent() {
   return (
-    <div className="w-full relative min-h-screen flex flex-col bg-bg selection:bg-white selection:text-black">
+    <div className="w-full relative min-h-screen flex flex-col bg-ground text-ink">
+      <ScrollToTop />
       <Navbar />
-      
-      <main className="flex-grow z-10 relative">
+
+      <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
