@@ -27,3 +27,8 @@ dist-ssr
 # Outillage local (config Claude Code et état de travail du plugin impeccable)
 .claude/
 .impeccable/
+
+# Docs de travail pour Claude Code et impeccable (gardées en local uniquement)
+CLAUDE.md
+DESIGN.md
+PRODUCT.md
