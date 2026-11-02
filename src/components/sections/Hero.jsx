@@ -39,7 +39,7 @@ export default function Hero() {
 
           <p className="mt-7 text-xl md:text-2xl font-semibold">Développeur Web Full-Stack</p>
           <p className="mt-2 max-w-xl text-lg text-muted leading-relaxed">
-            Je construis des expériences web rapides, accessibles et visuellement minimalistes.
+            Je développe des applications web de bout en bout : le serveur en C# / .NET, l'interface en Blazor ou en React.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-5">
@@ -53,7 +53,7 @@ export default function Hero() {
         </div>
 
         {/* Le parcours : une ligne qui se trace une fois, stations allumées au passage */}
-        <div className="mt-12" aria-label="Parcours">
+        <div className="mt-12" role="group" aria-label="Parcours">
           {/* Desktop : ligne horizontale sur toute la largeur */}
           <div className="relative hidden md:block">
             <motion.span

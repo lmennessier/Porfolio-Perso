@@ -16,7 +16,7 @@ export default function Home() {
           <div className="flex items-start gap-5">
             <span aria-hidden="true" className="mt-2 h-6 w-6 shrink-0 rounded-full border-[5px] border-white" />
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-[-0.03em] max-w-xl">
-              En Master MIAGE, développeur Full Stack en alternance chez OCAPIAT.
+              Un projet, une question sur mon parcours ? Écrivez-moi.
             </h2>
           </div>
           <div className="flex flex-wrap gap-4 shrink-0">

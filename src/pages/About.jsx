@@ -16,14 +16,19 @@ export default function About() {
 
           <div className="mt-10 max-w-[65ch] text-lg text-muted leading-relaxed space-y-6">
             <p>
-              Je suis Développeur Full Stack en alternance chez OCAPIAT, à Paris, en parallèle de mon Master MIAGE.
-              Diplômé d'une Licence en Informatique à Sorbonne Université, j'approfondis mes compétences en architecture logicielle et en gestion de projet.
+              Je suis développeur Full Stack en alternance chez OCAPIAT, à Paris, en parallèle de mon Master MIAGE.
+              Avant ça, j'ai fait ma licence d'informatique à Sorbonne Université, de 2023 à 2026.
             </p>
             <p>
-              Grâce à ma formation et à mes expériences, je suis capable d'intervenir sur différentes couches d'un projet, avec une approche axée sur la rigueur technique et la résolution de problèmes.
+              En 2025, j'ai fait mon stage chez AFNOR Groupe. Le sujet : un backoffice écrit en C# MVC, à migrer vers Blazor.
+              J'ai repris le code existant, conçu la nouvelle interface en Blazor et travaillé sur le temps de chargement du site.
             </p>
             <p>
-              Dans mon temps libre, je pratique assidûment la musculation. C'est une discipline qui forge la rigueur, la constance et le dépassement de soi, des qualités que j'applique directement dans mes développements.
+              À la fac, j'ai codé une simulation d'écosystème en C et travaillé sur les automates en Python.
+              Le Master me sert à compléter avec ce qui se joue autour du code : l'architecture logicielle et la gestion de projet.
+            </p>
+            <p>
+              Le reste du temps, je suis à la salle de musculation.
             </p>
           </div>
         </div>

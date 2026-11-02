@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const COORDONNEES = [
   { label: 'Téléphone', value: '+33 6 37 29 32 15', href: 'tel:+33637293215' },
   { label: 'Email', value: 'lmennessier99@gmail.com', href: 'mailto:lmennessier99@gmail.com' },
@@ -10,7 +12,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-x-16 gap-y-14">
         <div>
           <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold tracking-[-0.035em] leading-[0.95]">Contact</h1>
-          <p className="mt-6 text-lg text-muted">Disponible pour de nouvelles opportunités.</p>
+          <p className="mt-6 text-lg text-muted">Une question sur un projet ou sur mon parcours : écrivez-moi ici ou par e-mail.</p>
 
           <dl className="mt-10 border-t border-rule">
             {COORDONNEES.map(({ label, value, href }) => (
@@ -51,9 +53,15 @@ export default function Contact() {
             <textarea id="message" name="message" rows="6" required className="field resize-y" />
           </Field>
 
-          <button type="submit" className="btn btn-line w-full md:w-auto justify-center">
-            Envoyer
-          </button>
+          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+            <button type="submit" className="btn btn-line w-full md:w-auto justify-center shrink-0">
+              Envoyer
+            </button>
+            <p className="text-sm text-muted">
+              Vos données servent uniquement à vous répondre.{' '}
+              <Link to="/confidentialite" className="font-semibold text-ink underline decoration-1 hover:text-line">En savoir plus</Link>
+            </p>
+          </div>
         </form>
       </div>
     </section>

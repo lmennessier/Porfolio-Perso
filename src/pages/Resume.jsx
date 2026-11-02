@@ -15,11 +15,11 @@ export default function Resume() {
           </h1>
 
           <div className="flex flex-wrap gap-3">
-            <a href={pdfLink1} target="_blank" rel="noreferrer" className="btn btn-line">
+            <a href={pdfLink1} download className="btn btn-line">
               <AiOutlineDownload size={20} aria-hidden="true" />
               Télécharger le CV MIAGE (PDF)
             </a>
-            <a href={pdfLink2} target="_blank" rel="noreferrer" className="btn btn-ghost">
+            <a href={pdfLink2} download className="btn btn-ghost">
               <AiOutlineDownload size={20} aria-hidden="true" />
               Télécharger le CV GL (PDF)
             </a>

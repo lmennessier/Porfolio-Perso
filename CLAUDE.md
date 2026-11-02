@@ -18,7 +18,7 @@ npm run lint     # ESLint
 
 ## Structure
 
-- `src/App.jsx` : routeur (`react-router-dom`) avec les routes `/`, `/about`, `/resume`, `/contact`
+- `src/App.jsx` : routeur (`react-router-dom`) avec les routes `/`, `/about`, `/resume`, `/contact`, `/mentions-legales`, `/confidentialite` (titres d'onglet par page dans `TITLES`)
 - `src/pages/` : une page par route (`Home` assemble les sections)
 - `src/components/layout/` : `Navbar` (fixe, menu mobile) et `Footer`
 - `src/components/sections/` : `Hero`, `Projects`, `Skills` (sections de la page d'accueil)

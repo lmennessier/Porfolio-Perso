@@ -22,7 +22,12 @@ export default function Projects() {
             <li key={project.title} className="station station--interactive pb-12 md:pb-14">
               {/* Anatomie fixe : nom, description, stack, lien */}
               <article>
-                <h3 className="text-2xl md:text-[1.75rem] font-extrabold leading-8 tracking-tight">{project.title}</h3>
+                <h3 className="text-2xl md:text-[1.75rem] font-extrabold leading-8 tracking-tight">
+                  {/* Le nom mène au dépôt : la station qui s'allume au survol est vraiment cliquable */}
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-line transition-colors">
+                    {project.title}
+                  </a>
+                </h3>
                 <p className="mt-2 text-lg text-muted max-w-prose">{project.description}</p>
 
                 <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
